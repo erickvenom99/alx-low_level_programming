@@ -7,14 +7,11 @@
  */
 int _stringlength(char *s)
 {
-	int length = 0;
-	int i;
-
-	for (i = 0; s[i] != '\0'; i++)
+	if (*s == '\0')
 	{
-		length++;
+		return (0);
 	}
-	return (length);
+	return (1  + _stringlength(s + 1));
 }
 /**
  *is_palindrome_asst- Checks if a given string is palindrome
