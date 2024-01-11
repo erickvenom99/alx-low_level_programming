@@ -1,0 +1,52 @@
+#include "main.h"
+/**
+ * _stringlength- Checks the lengthh of the string
+ *@s: ponter to the input string
+ *
+ *Return: integer Value
+ */
+int _stringlength(char *s)
+{
+	int length = 0;
+	int i;
+
+	for (i = 0; s[i] != '\0'; i++)
+	{
+		length++;
+	}
+	return (length);
+}
+/**
+ *is_palindrome_asst- Checks if a given string is palindrome
+ *@s: pointer to the input string
+ *@left: the first index from 0
+ *@right: the last index of the string
+ *Return: integer value
+ */
+int is_palindrome_asst(char *s, int left, int right)
+{
+	if (left >= right)
+	{
+		return (1);
+	}
+	else if (s[left] != s[right])
+	{
+		return (0);
+	}
+	else
+	{
+		return (is_palindrome_asst(s, left + 1, right - 1));
+	}
+}
+/**
+ *is_palindrome- checks if a string is palindrom or not
+ *@s: pointer to the string
+ *
+ *Return: 1 if string is palindrome and 0 if its not
+ */
+int is_palindrome(char *s)
+{
+	int length = _stringlength(s);
+
+	return (is_palindrome_asst(s, 0, length - 1));
+}
