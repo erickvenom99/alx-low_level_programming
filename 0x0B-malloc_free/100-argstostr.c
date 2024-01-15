@@ -41,7 +41,6 @@ char *argstostr(int ac, char **av)
 		{
 			arr[curr_index++] = *arg++;
 		}
-		if (i < ac - 1)
 		arr[curr_index++] = '\n';
 	}
 	arr[curr_index] = '\0';
