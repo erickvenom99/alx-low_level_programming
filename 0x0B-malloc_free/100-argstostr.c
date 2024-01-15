@@ -29,7 +29,7 @@ char *argstostr(int ac, char **av)
 		}
 		total_length += arg_length;
 	}
-	arr = malloc((total_length + 1) * sizeof(char));
+	arr = malloc((total_length + ac) * sizeof(char));
 	if (arr == NULL)
 	{
 		return (NULL);
