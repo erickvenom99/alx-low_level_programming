@@ -12,42 +12,36 @@
 *If new_size is equal to old_size, returns ptr without changes.
 *If memory allocation fails, returns NULL.
 */
-
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
-	unsigned int min_size;
+	char *pointer;
 	unsigned int i;
-	void *new_ptr;
-	char *src;
-	char *des;
+	unsigned int n_size = new_size;
+	char *old_ptr = ptr;
 
-	if (new_size == 0)
+	if (ptr == NULL)
+	{
+		pointer = malloc(new_size);
+		return (pointer);
+	}
+	else if (new_size == 0)
 	{
 		free(ptr);
 		return (NULL);
 	}
-	if (ptr == NULL)
-		return (malloc(new_size));
-	if (new_size == old_size)
+	else if (new_size == old_size)
 		return (ptr);
-	new_ptr = malloc(new_size);
 
-	if (new_ptr == NULL)
+	pointer = malloc(new_size);
+	if (pointer == NULL)
 		return (NULL);
-	des = (char *)new_ptr;
-	src = (char *)ptr;
-	if (old_size < new_size)
-	{
-		min_size = old_size;
-	}
-	else
-	{
-		min_size = new_size;
-	}
-	for (i = 0; i < min_size; i++)
-	{
-		des[i] = src[i];
-	}
+
+	if (new_size > old_size)
+		n_size = old_size;
+
+	for (i = 0; i < n_size; i++)
+		pointer[i] = old_ptr[i];
+
 	free(ptr);
-	return (new_ptr);
+	return (pointer);
 }
