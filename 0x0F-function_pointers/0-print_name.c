@@ -1,12 +1,13 @@
 #include "function_pointers.h"
+#include <stdio.h>
 /**
 *print_name -Print name
 *@name: an array
 *@f: funtion pointer
 *
-*Return void
+*Return: void
 */
 void print_name(char *name, void (*f)(char *))
 {
-	f(name);
+	(*f)(name);
 }
