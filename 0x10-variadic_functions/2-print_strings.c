@@ -3,7 +3,7 @@
 /**
  * print_strings - Prints a variable number of strings
  * @separator: string to be printed between the strings (
- * @n  Number of strings to be printed.
+ * @n: Number of strings to be printed.
  * @...: The variable number of strings to be printed.
  *
  */
