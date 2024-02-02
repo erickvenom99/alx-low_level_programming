@@ -4,12 +4,11 @@
 #include "lists.h"
 
 /**
- * new _node_end - Adds a new node at the end of a list_t linked list.
- * @head: A double pointer to the head of the list.
- * @str: The string to be duplicated and stored in the new node.
+ * add_node_end - Adds a new node to the end
+ * @head: A double pointer
+ * @str: The string to be duplicated
  *
  * Return: Address of the new element,
- *
  */
 list_t *add_node_end(list_t **head, const char *str)
 {
@@ -37,6 +36,7 @@ list_t *add_node_end(list_t **head, const char *str)
 	else
 	{
 		list_t *current = *head;
+
 		while (current->next != NULL)
 		{
 			current = current->next;
