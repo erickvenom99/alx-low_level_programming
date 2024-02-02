@@ -1,11 +1,10 @@
 #include <stdio.h>
-
-int main(void)
+/**
+ * p_Message - prints a string
+ *
+ */
+void __attribute__((constructor)) p_Message()
 {
-	char challenges[] = "challenges";
-
-	printf("(A tortoise, having pretty good sense of a hare's nature, ");
-	printf("challenges one to a race.)\n");
-
-	return 0;
+	printf("You're beat! and yet, you must allow,\n");
+	printf("I bore my house upon my back!\n");
 }
