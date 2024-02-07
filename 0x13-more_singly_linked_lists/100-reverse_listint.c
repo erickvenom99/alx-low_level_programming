@@ -1,10 +1,10 @@
 #include "lists.h"
 /**
- * reverse_listint - Print a list in revers
- *@head: Head pointer
- *
- *Returns: Ponter to first node
- */
+* reverse_listint - Print a list in revers
+* @head: Head pointer
+*
+* Return: Ponter to first node
+*/
 listint_t *reverse_listint(listint_t **head)
 {
 	listint_t *previous = NULL;
@@ -20,5 +20,5 @@ listint_t *reverse_listint(listint_t **head)
 	}
 
 	*head = previous;
-	return *head;
+	return (*head);
 }
