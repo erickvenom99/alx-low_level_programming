@@ -9,7 +9,7 @@
 void open_files(char *file_from_name, char *file_to_name, int *file_from,
 		int *file_to)
 {
-	int flags = O_CREAT | O_WRONLY | O_TRUNC;
+	int flags = O_WRONLY | O_CREAT | O_TRUNC;
 	mode_t mode = 0664;
 
 	*file_from = open(file_from_name, O_RDONLY);
