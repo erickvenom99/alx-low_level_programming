@@ -11,18 +11,28 @@ void open_files(char *file_from_name, char *file_to_name, int *file_from,
 {
 	int flags = O_WRONLY | O_CREAT | O_TRUNC;
 	mode_t mode = 0664;
+	struct stat st;
 
 	*file_from = open(file_from_name, O_RDONLY);
 	if (*file_from == -1)
 	{
-		dprintf(2, "Error: Can't read from file %s\n", file_from_name);
+	dprintf(STDERR_FILENO, "Error: Can't read from file %s\n",
+		file_from_name);
 		exit(98);
 	}
+	if (stat(file_to_name, &st) == 0 && !(st.st_mode & S_IRUSR))
+	dprintf(STDERR_FILENO,
+		"Error:Destination file  %s dosen't have read permissions\n",
+		file_to_name
+		);
 
 	*file_to = open(file_to_name, flags, mode);
 	if (*file_to == -1)
 	{
-		dprintf(2, "Error: Can't write to %s\n", file_to_name);
+		dprintf(STDERR_FILENO,
+			"Error: Can't write to %s\n",
+			file_to_name
+			);
 		close(*file_from);
 		exit(99);
 	}
@@ -44,8 +54,10 @@ void copy_content(int file_from, int file_to)
 		byte_write = write(file_to, buffer, byte_read);
 		if (byte_write != byte_read)
 		{
-			dprintf(2, "Error: Can't write to file descriptor %d\n",
-				file_to);
+			dprintf(STDERR_FILENO,
+				"Error: Can't write to file descriptor %d\n",
+				file_to
+				);
 			close(file_from);
 			close(file_to);
 			exit(99);
@@ -54,8 +66,10 @@ void copy_content(int file_from, int file_to)
 
 	if (byte_read == -1)
 	{
-		dprintf(2, "Error: Can't read from file descriptor %d\n",
-			file_from);
+		dprintf(STDERR_FILENO,
+			"Error: Can't read from file descriptor %d\n",
+			file_from
+			);
 		exit(98);
 	}
 }
@@ -73,7 +87,7 @@ int main(int argc, char *argv[])
 
 	if (argc != 3)
 	{
-		dprintf(2, "Usage: cp file_from file_to\n");
+		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
 
@@ -83,13 +97,13 @@ int main(int argc, char *argv[])
 
 	if (close(file_from) == -1)
 	{
-		dprintf(2, "Error: Can't close fd %d\n", file_from);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_from);
 		exit(100);
 	}
 
 	if (close(file_to) == -1)
 	{
-		dprintf(2, "Error: Can't close fd %d\n", file_to);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_to);
 		exit(100);
 	}
 
